@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const axios = require('axios')
 const countries = require('./countries.json')
+const extraQuestions = require('./extra-questions.json')
 
 const app = express()
 app.use(cors())
@@ -10,6 +11,7 @@ app.use(express.json())
 const BATCH_AMT = 50
 const QUESTION_AMT = 10
 let gameQuestions = []
+let score = 0
 
 app.post('/initialize', async (req, res) => {
     const difficulty = req.body.difficulty
@@ -17,27 +19,48 @@ app.post('/initialize', async (req, res) => {
     try {
         const response = await axios.get(`https://opentdb.com/api.php?amount=${BATCH_AMT}&category=22&difficulty=${difficulty}&type=multiple`)
         const questions = response.data.results
-        
-        let i = 0
 
-        while(gameQuestions.length < QUESTION_AMT && i < BATCH_AMT) {
-            const answer = questions[i].correct_answer
+        const filteredQuestions = questions
+            .filter(q => countries.includes(q.correct_answer))
+            .map((q, index) => {
+                q.id = index
+                return q
+            })
 
-            if(countries.includes(answer)) {
-                gameQuestions.push(questions[i])
+        gameQuestions.push(...filteredQuestions.slice(0, QUESTION_AMT))
+
+         // If there are less than 10 questions after requesting API
+        while(gameQuestions.length < QUESTION_AMT) {
+            if(gameQuestions.length < QUESTION_AMT) {
+                const randIndex = Math.floor(Math.random() * extraQuestions.length)
+                const selected = extraQuestions[randIndex]
+
+                if(!gameQuestions.some(q => q.id === randIndex + BATCH_AMT) && selected) {
+                    selected.id = randIndex + BATCH_AMT
+                    gameQuestions.push(selected)
+                }
             }
-
-            i++
         }
+
+        console.log(`LENGTH: ${gameQuestions.length}`)
+        res.send(gameQuestions)
     } catch (error) {
         console.error('Error fetching questions:', error);
         res.status(500).send('Error fetching questions');
     }
+})
 
-    // TODO: Handle error in case there is not 10 questions.
+app.post('/validate', (req, res) => {
+    const answer = req.body.answer
+    const questionID = req.body.questionID
 
-    console.log(`LENGTH: ${gameQuestions.length}`)
-    res.send(gameQuestions)
+    const isCorrect = answer === gameQuestions.filter(q => q.id === questionID)[0].correct_answer
+
+    if(isCorrect) {
+        score++
+    }
+
+    res.send({ correct: isCorrect, score})
 })
 
 app.listen(8080, () => {

@@ -1,0 +1,452 @@
+[
+    {
+        "question": "Which country has the largest population?",
+        "correct_answer": "China",
+        "incorrect_answers": [
+            "India",
+            "United States",
+            "Brazil"
+        ]
+    },
+    {
+        "question": "Which country is known as the Land of the Rising Sun?",
+        "correct_answer": "Japan",
+        "incorrect_answers": [
+            "South Korea",
+            "China",
+            "Thailand"
+        ]
+    },
+    {
+        "question": "Which country has the most natural lakes?",
+        "correct_answer": "Canada",
+        "incorrect_answers": [
+            "Russia",
+            "Sweden",
+            "Finland"
+        ]
+    },
+    {
+        "question": "Which country is famous for its pyramids?",
+        "correct_answer": "Egypt",
+        "incorrect_answers": [
+            "Mexico",
+            "Greece",
+            "Jordan"
+        ]
+    },
+    {
+        "question": "Which country is the largest by area?",
+        "correct_answer": "Russia",
+        "incorrect_answers": [
+            "Canada",
+            "China",
+            "United States"
+        ]
+    },
+    {
+        "question": "Which country is the smallest by land area?",
+        "correct_answer": "Vatican City",
+        "incorrect_answers": [
+            "Monaco",
+            "San Marino",
+            "Liechtenstein"
+        ]
+    },
+    {
+        "question": "Which country is home to the Eiffel Tower?",
+        "correct_answer": "France",
+        "incorrect_answers": [
+            "Germany",
+            "Italy",
+            "Spain"
+        ]
+    },
+    {
+        "question": "Which country is known for its maple syrup production?",
+        "correct_answer": "Canada",
+        "incorrect_answers": [
+            "United States",
+            "Switzerland",
+            "Australia"
+        ]
+    },
+    {
+        "question": "Which country is the birthplace of the Renaissance?",
+        "correct_answer": "Italy",
+        "incorrect_answers": [
+            "France",
+            "Spain",
+            "Greece"
+        ]
+    },
+    {
+        "question": "Which country is bordered by both the Atlantic and Pacific Oceans?",
+        "correct_answer": "United States",
+        "incorrect_answers": [
+            "Brazil",
+            "Canada",
+            "Mexico"
+        ]
+    },
+    {
+        "question": "Which country has the most volcanoes?",
+        "correct_answer": "Indonesia",
+        "incorrect_answers": [
+            "Japan",
+            "Chile",
+            "Philippines"
+        ]
+    },
+    {
+        "question": "Which country is known as the Land of Fire and Ice?",
+        "correct_answer": "Iceland",
+        "incorrect_answers": [
+            "Norway",
+            "Sweden",
+            "Greenland"
+        ]
+    },
+    {
+        "question": "Which country is famous for its Carnival in Rio de Janeiro?",
+        "correct_answer": "Brazil",
+        "incorrect_answers": [
+            "Argentina",
+            "Colombia",
+            "Mexico"
+        ]
+    },
+    {
+        "question": "Which country has a kangaroo as one of its national symbols?",
+        "correct_answer": "Australia",
+        "incorrect_answers": [
+            "New Zealand",
+            "South Africa",
+            "India"
+        ]
+    },
+    {
+        "question": "Which country has the city of Istanbul, which spans two continents?",
+        "correct_answer": "Turkey",
+        "incorrect_answers": [
+            "Greece",
+            "Russia",
+            "Egypt"
+        ]
+    },
+    {
+        "question": "Which country is the world's largest producer of coffee?",
+        "correct_answer": "Brazil",
+        "incorrect_answers": [
+            "Colombia",
+            "Vietnam",
+            "Peru"
+        ]
+    },
+    {
+        "question": "Which country is known for its high-quality chocolate and watches?",
+        "correct_answer": "Switzerland",
+        "incorrect_answers": [
+            "Belgium",
+            "France",
+            "Germany"
+        ]
+    },
+    {
+        "question": "Which country is home to the ancient city of Petra?",
+        "correct_answer": "Jordan",
+        "incorrect_answers": [
+            "Egypt",
+            "Turkey",
+            "Saudi Arabia"
+        ]
+    },
+    {
+        "question": "Which country is famous for its tulips and windmills?",
+        "correct_answer": "Netherlands",
+        "incorrect_answers": [
+            "Belgium",
+            "France",
+            "Germany"
+        ]
+    },
+    {
+        "question": "Which country has the longest coastline?",
+        "correct_answer": "Canada",
+        "incorrect_answers": [
+            "Australia",
+            "Russia",
+            "United States"
+        ]
+    },
+    {
+        "question": "Which country is famous for its fjords?",
+        "correct_answer": "Norway",
+        "incorrect_answers": [
+            "Sweden",
+            "Denmark",
+            "Finland"
+        ]
+    },
+    {
+        "question": "Which country was formerly known as Ceylon?",
+        "correct_answer": "Sri Lanka",
+        "incorrect_answers": [
+            "India",
+            "Bangladesh",
+            "Myanmar"
+        ]
+    },
+    {
+        "question": "Which country is known for its pyramids besides Egypt?",
+        "correct_answer": "Sudan",
+        "incorrect_answers": [
+            "Greece",
+            "Mexico",
+            "Italy"
+        ]
+    },
+    {
+        "question": "Which country has a maple leaf on its flag?",
+        "correct_answer": "Canada",
+        "incorrect_answers": [
+            "United States",
+            "Australia",
+            "New Zealand"
+        ]
+    },
+    {
+        "question": "Which country is known as the Pearl of the Indian Ocean?",
+        "correct_answer": "Sri Lanka",
+        "incorrect_answers": [
+            "Maldives",
+            "India",
+            "Bangladesh"
+        ]
+    },
+    {
+        "question": "Which country has the city of Machu Picchu?",
+        "correct_answer": "Peru",
+        "incorrect_answers": [
+            "Bolivia",
+            "Chile",
+            "Colombia"
+        ]
+    },
+    {
+        "question": "Which country is the largest island nation in the Mediterranean Sea?",
+        "correct_answer": "Cyprus",
+        "incorrect_answers": [
+            "Greece",
+            "Malta",
+            "Turkey"
+        ]
+    },
+    {
+        "question": "Which country has the Amazon rainforest?",
+        "correct_answer": "Brazil",
+        "incorrect_answers": [
+            "Peru",
+            "Colombia",
+            "Venezuela"
+        ]
+    },
+    {
+        "question": "Which country is known for its samba dance?",
+        "correct_answer": "Brazil",
+        "incorrect_answers": [
+            "Argentina",
+            "Colombia",
+            "Cuba"
+        ]
+    },
+    {
+        "question": "Which country is the only one to border both Denmark and Russia?",
+        "correct_answer": "Germany",
+        "incorrect_answers": [
+            "Poland",
+            "Netherlands",
+            "Sweden"
+        ]
+    },
+    {
+        "question": "Which country is famous for its Great Wall?",
+        "correct_answer": "China",
+        "incorrect_answers": [
+            "Japan",
+            "Korea",
+            "Vietnam"
+        ]
+    },
+    {
+        "question": "Which country has the city of Prague?",
+        "correct_answer": "Czech Republic",
+        "incorrect_answers": [
+            "Slovakia",
+            "Austria",
+            "Poland"
+        ]
+    },
+    {
+        "question": "Which country is the origin of the tango dance?",
+        "correct_answer": "Argentina",
+        "incorrect_answers": [
+            "Brazil",
+            "Chile",
+            "Peru"
+        ]
+    },
+    {
+        "question": "Which country is famous for its Alps and yodeling?",
+        "correct_answer": "Switzerland",
+        "incorrect_answers": [
+            "Austria",
+            "Germany",
+            "Italy"
+        ]
+    },
+    {
+        "question": "Which country is the smallest in Africa by land area?",
+        "correct_answer": "Seychelles",
+        "incorrect_answers": [
+            "Mauritius",
+            "Comoros",
+            "São Tomé and Príncipe"
+        ]
+    },
+    {
+        "question": "Which country has the world's largest coral reef system?",
+        "correct_answer": "Australia",
+        "incorrect_answers": [
+            "Belize",
+            "Indonesia",
+            "Philippines"
+        ]
+    },
+    {
+        "question": "Which country has a dragon on its flag?",
+        "correct_answer": "Bhutan",
+        "incorrect_answers": [
+            "China",
+            "Wales",
+            "Nepal"
+        ]
+    },
+    {
+        "question": "Which country is famous for its ancient Olympic Games?",
+        "correct_answer": "Greece",
+        "incorrect_answers": [
+            "Italy",
+            "Egypt",
+            "Turkey"
+        ]
+    },
+    {
+        "question": "Which country is landlocked between France and Spain?",
+        "correct_answer": "Andorra",
+        "incorrect_answers": [
+            "Monaco",
+            "Liechtenstein",
+            "San Marino"
+        ]
+    },
+    {
+        "question": "Which country is known for the ancient ruins of Angkor Wat?",
+        "correct_answer": "Cambodia",
+        "incorrect_answers": [
+            "Thailand",
+            "Vietnam",
+            "Laos"
+        ]
+    },
+    {
+        "question": "Which country has the city of Dubai?",
+        "correct_answer": "United Arab Emirates",
+        "incorrect_answers": [
+            "Saudi Arabia",
+            "Oman",
+            "Qatar"
+        ]
+    },
+    {
+        "question": "Which country has the Andes mountain range?",
+        "correct_answer": "Chile",
+        "incorrect_answers": [
+            "Argentina",
+            "Peru",
+            "Bolivia"
+        ]
+    },
+    {
+        "question": "Which country is the southernmost in South America?",
+        "correct_answer": "Chile",
+        "incorrect_answers": [
+            "Argentina",
+            "Brazil",
+            "Uruguay"
+        ]
+    },
+    {
+        "question": "Which country has a flag with a single star in the center?",
+        "correct_answer": "Panama",
+        "incorrect_answers": [
+            "Chile",
+            "Mexico",
+            "Brazil"
+        ]
+    },
+    {
+        "question": "Which country is home to Mount Kilimanjaro?",
+        "correct_answer": "Tanzania",
+        "incorrect_answers": [
+            "Kenya",
+            "Uganda",
+            "Rwanda"
+        ]
+    },
+    {
+        "question": "Which country is known for the Kremlin and Red Square?",
+        "correct_answer": "Russia",
+        "incorrect_answers": [
+            "Ukraine",
+            "Poland",
+            "Estonia"
+        ]
+    },
+    {
+        "question": "Which country is famous for its Oktoberfest celebration?",
+        "correct_answer": "Germany",
+        "incorrect_answers": [
+            "Austria",
+            "Netherlands",
+            "Belgium"
+        ]
+    },
+    {
+        "question": "Which country is known for its ancient pyramids and Nile River?",
+        "correct_answer": "Egypt",
+        "incorrect_answers": [
+            "Sudan",
+            "Greece",
+            "Mexico"
+        ]
+    },
+    {
+        "question": "Which country has the city of Casablanca?",
+        "correct_answer": "Morocco",
+        "incorrect_answers": [
+            "Algeria",
+            "Tunisia",
+            "Egypt"
+        ]
+    },
+    {
+        "question": "Which country has the world's largest desert, the Sahara?",
+        "correct_answer": "Algeria",
+        "incorrect_answers": [
+            "Morocco",
+            "Egypt",
+            "Libya"
+        ]
+    }
+]
