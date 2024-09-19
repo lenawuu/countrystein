@@ -93,7 +93,37 @@ app.get("/questions", (req, res) => {
 });
 
 app.get("/winnings", (req, res) => {
-  res.send(winnings);
+  res.send([
+    {
+      country: "Canada",
+      path: generatePath("Canada"),
+    },
+    {
+      country: "Kenya",
+      path: generatePath("Kenya"),
+    },
+    {
+      country: "Canada",
+      path: generatePath("Canada"),
+    },
+    {
+      country: "Kenya",
+      path: generatePath("Kenya"),
+    },
+    {
+      country: "Canada",
+      path: generatePath("Canada"),
+    },
+    {
+      country: "Kenya",
+      path: generatePath("Kenya"),
+    },
+    {
+      country: "Canada",
+      path: generatePath("Canada"),
+    },
+  ]);
+  //res.send(winnings);
 });
 
 app.listen(8080, () => {
