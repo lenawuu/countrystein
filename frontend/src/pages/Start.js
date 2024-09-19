@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useGameContext } from "../GameContext";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Start() {
   const [difficulty, setDifficulty] = useState("easy");
   const [gameLength, setGameLength] = useState(10);
 
-  const { setGameData } = useGameContext();
+  const navigate = useNavigate();
 
   const handleDifficultyChange = (event) => {
     setDifficulty(event.target.value);
@@ -17,16 +16,11 @@ function Start() {
     event.preventDefault();
 
     try {
-      const data = await axios.post("http://localhost:8080/start", {
+      await axios.post("http://localhost:8080/start", {
         difficulty,
         gameLength: Number(gameLength),
       });
-
-      setGameData(() => ({
-        questions: data,
-      }));
-
-      <Navigate to="/game" replace={true} />;
+      navigate("/game");
     } catch (error) {
       console.error("Error:", error);
     }

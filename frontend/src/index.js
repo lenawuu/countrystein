@@ -1,10 +1,11 @@
-import React, { createContext, useState, useContext } from "react";
 import ReactDOM from "react-dom/client";
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import { GameProvider } from "./GameContext";
 import LandingPage from "./pages/LandingPage";
 import Start from "./pages/Start";
+import Game from "./pages/Game";
+import BuildStein from "./pages/BuildStein";
 
 const router = createBrowserRouter([
   {
@@ -15,13 +16,19 @@ const router = createBrowserRouter([
     path: "/start",
     element: <Start />,
   },
+  {
+    path: "/game",
+    element: <Game />,
+  },
+  {
+    path: "/build",
+    element: <BuildStein />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <GameProvider>
-      <RouterProvider router={router} />
-    </GameProvider>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
