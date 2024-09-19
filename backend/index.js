@@ -13,6 +13,7 @@ const QUESTION_AMT = 10;
 let gameQuestions = [];
 let winnings = [];
 let score = 0;
+let finalImage = "";
 
 function generatePath(countryName) {
   const iso = countries
@@ -124,6 +125,16 @@ app.get("/winnings", (req, res) => {
     },
   ]);
   //res.send(winnings);
+});
+
+app.post("/final-image", (req, res) => {
+  finalImage = req.body.image;
+
+  res.send(`success. image uri: ${finalImage}`);
+});
+
+app.get("/final-image", (req, res) => {
+  res.send({ image: finalImage });
 });
 
 app.listen(8080, () => {

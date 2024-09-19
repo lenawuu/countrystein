@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Draggable from "react-draggable";
 import axios from "axios";
 import { useScreenshot } from "use-screenshot-hook";
+import { useNavigate } from "react-router-dom";
 
 function BuildStein() {
   const [countries, setCountries] = useState([]);
@@ -9,6 +10,7 @@ function BuildStein() {
 
   const myRef = useRef(null);
   const { image, takeScreenshot } = useScreenshot({ ref: myRef });
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchWinnings = async () => {
@@ -26,10 +28,22 @@ function BuildStein() {
     fetchWinnings();
   }, []);
 
+  const handleNext = async () => {
+    try {
+      await axios.post("http://localhost:8080/final-image", { image });
+    } catch (error) {
+      console.error("Error storing image:", error);
+    }
+    navigate("/end");
+  };
+
   return (
     <div class="w-screen h-screen bg-color flex justify-center items-center">
-      <div class="w-3/4 h-3/4 grid grid-cols-4 border-4">
-        <div className="border-b-2 border-gray-300 h-full col-span-2 py-4 px-4">
+      <div class="w-3/4 h-3/4 border-4">
+        <div
+          className="border-b-2 border-gray-300 h-full grid grid-cols-4 py-4 px-4"
+          ref={myRef}
+        >
           {isLoading ? (
             <p>Loading winnings ...</p>
           ) : (
@@ -48,23 +62,14 @@ function BuildStein() {
             </div>
           )}
         </div>
-        <div
-          className="flex-1 border-dashed border-2 border-gray-400 col-span-2 p-2"
-          onDragOver={(e) => e.preventDefault()}
-          onDrop={(e) => {
-            const country = e.dataTransfer.getData("text/plain");
-            console.log("Dropped country:", country);
-            // Handle the dropped country
-          }}
-          ref={myRef}
-        >
-          <h3 className="font-bold">Drop Area</h3>
-          <p>Drop countries here</p>
-        </div>
+
         <button class="btn btn-primary" onClick={() => takeScreenshot()}>
           take screenshot
         </button>
         {image && <img src={image} />}
+        <button class="btn btn-primary" onClick={() => handleNext()}>
+          next
+        </button>
       </div>
     </div>
   );
