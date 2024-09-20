@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
-const countries = require("../countries.json");
+const countries = require("../frontend/public/countries.json");
 const extraQuestions = require("./extra-questions.json");
 
 const app = express();
@@ -73,17 +73,17 @@ app.post("/start", async (req, res) => {
 
 app.post("/validate", async (req, res) => {
   const answer = req.body.answer;
-  const questionID = req.body.questionID;
+  const questionID = req.body.id;
 
   const correctAnswer = gameQuestions.filter((q) => q.id === questionID)[0]
     .correct_answer;
 
   if (answer === correctAnswer) {
     score++;
-
-    const path = generatePath(correctAnswer);
-
-    winnings.push({ country: correctAnswer, path });
+    winnings.push({
+      country: correctAnswer,
+      path: generatePath(correctAnswer),
+    });
   }
 
   res.send({ isCorrect: answer === correctAnswer, score });
@@ -94,37 +94,7 @@ app.get("/questions", (req, res) => {
 });
 
 app.get("/winnings", (req, res) => {
-  res.send([
-    {
-      country: "Canada",
-      path: generatePath("Canada"),
-    },
-    {
-      country: "Kenya",
-      path: generatePath("Kenya"),
-    },
-    {
-      country: "Canada",
-      path: generatePath("Canada"),
-    },
-    {
-      country: "Kenya",
-      path: generatePath("Kenya"),
-    },
-    {
-      country: "Canada",
-      path: generatePath("Canada"),
-    },
-    {
-      country: "Kenya",
-      path: generatePath("Kenya"),
-    },
-    {
-      country: "Canada",
-      path: generatePath("Canada"),
-    },
-  ]);
-  //res.send(winnings);
+  res.send(winnings);
 });
 
 app.post("/final-image", (req, res) => {

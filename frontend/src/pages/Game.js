@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Question from "../components/Question";
 import Feedback from "../components/Feedback";
+import Results from "../components/Results";
+import { useNavigate } from "react-router-dom";
 
 function Game() {
   const [gameQuestions, setGameQuestions] = useState([]);
@@ -10,8 +12,12 @@ function Game() {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [displayQuestion, setDisplayQuestion] = useState(false);
   const [displayFeedback, setDisplayFeedback] = useState(false);
+  const [showResults, setShowResults] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [countriesData, setCountriesData] = useState([]);
+
+  const navigate = useNavigate();
 
   const handleAnswer = async (answer) => {
     const id = curQuestion.id;
@@ -22,27 +28,32 @@ function Game() {
           id,
           answer,
         });
-        return response.data;
+        setScore(response.data.score);
+        setIsCorrect(response.data.isCorrect);
       } catch (error) {
         console.error("Error validating answer:", error);
       }
     };
 
-    const { isCorrect, score } = validateAnswer();
-    setScore(score);
-    setIsCorrect(isCorrect);
+    validateAnswer();
     setDisplayFeedback(true);
     setDisplayQuestion(false);
   };
 
   const nextQuestion = () => {
-    setDisplayFeedback(false);
-    setDisplayQuestion(true);
-    setQuestionIndex(questionIndex + 1);
-    setCurQuestion(gameQuestions[questionIndex]);
-    setIsCorrect(false);
+    if (questionIndex < 9) {
+      setDisplayFeedback(false);
+      setDisplayQuestion(true);
+      setQuestionIndex(questionIndex + 1);
+      setCurQuestion(gameQuestions[questionIndex]);
+      setIsCorrect(false);
+    } else {
+      setDisplayFeedback(false);
+      setShowResults(true);
+    }
   };
 
+  // FIXME: first question appears twice
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
@@ -59,18 +70,59 @@ function Game() {
     };
 
     fetchQuestions();
+
+    fetch("./countries.json")
+      .then((response) => response.json())
+      .then((json) => setCountriesData(json))
+      .catch((error) => console.error("Error fetching JSON:", error));
   }, []);
 
+  function generatePath(countryName) {
+    const iso = countriesData
+      .find((c) => c.country.toLowerCase() === countryName.toLowerCase())
+      .iso.toLowerCase();
+
+    const path = `/mapsicon/all/${iso}/vector.svg`;
+    return path;
+  }
+
+  function handleResultsClose() {
+    navigate("/build");
+  }
+
   return (
-    <div class="w-screen h-screen bg-color flex justify-center">
+    <div class="w-screen h-screen bg-color flex flex-col justify-start items-center px-6 py-6">
+      <div class="w-full flex justify-center">
+        {displayQuestion && (
+          <div class="self-start justify-self-center h-fit flex flex-col justify-center">
+            <p class="text-center">Score</p>
+            <p class="text-center">{score}</p>
+          </div>
+        )}
+      </div>
+
       {displayQuestion && !isLoading && (
-        <div class="w-1/2">
+        <div class="w-3/4 h-full flex items-center justify-center">
           <Question questionData={curQuestion} onAnswer={handleAnswer} />
         </div>
       )}
 
       {displayFeedback && (
-        <Feedback isCorrect={isCorrect} onClose={() => nextQuestion()} />
+        <Feedback
+          isCorrect={isCorrect}
+          correctAnswer={curQuestion.correct_answer}
+          correctSVG={generatePath(curQuestion.correct_answer)}
+          onClose={() => nextQuestion()}
+        />
+      )}
+
+      {showResults && (
+        <Results
+          score={score}
+          onClose={() => {
+            handleResultsClose();
+          }}
+        />
       )}
     </div>
   );
