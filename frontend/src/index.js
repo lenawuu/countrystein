@@ -5,7 +5,6 @@ import "./index.css";
 import LandingPage from "./pages/LandingPage";
 import Start from "./pages/Start";
 import Game from "./pages/Game";
-import BuildStein from "./pages/BuildStein";
 import End from "./pages/End";
 
 const router = createBrowserRouter([

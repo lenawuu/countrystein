@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import Draggable from "react-draggable";
 import axios from "axios";
 import { useScreenshot } from "use-screenshot-hook";
-import { useNavigate } from "react-router-dom";
 
 function BuildStein({ setFinalImage, handleTransition }) {
   const [countries, setCountries] = useState([]);
@@ -10,7 +9,6 @@ function BuildStein({ setFinalImage, handleTransition }) {
 
   const myRef = useRef(null);
   const { takeScreenshot } = useScreenshot({ ref: myRef });
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchWinnings = async () => {
@@ -53,7 +51,7 @@ function BuildStein({ setFinalImage, handleTransition }) {
                       className="w-full h-auto"
                       style={{
                         filter:
-                          "invert(63%) sepia(17%) saturate(821%) hue-rotate(78deg) brightness(94%) contrast(90%)",
+                          "invert(28%) sepia(85%) saturate(427%) hue-rotate(44deg) brightness(97%) contrast(91%)",
                       }}
                     />
                   </button>

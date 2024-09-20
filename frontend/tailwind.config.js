@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        ultraprint: ["Ultraprint", "sans-serif"],
-        bowlby: ["bowlby", "sans-serif"],
+        bowlby: ["Bowlby One", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
       },
     },
   },
@@ -18,7 +18,7 @@ module.exports = {
 
           secondary: "#78716c",
 
-          accent: "#facc15",
+          accent: "#D7DED0",
 
           "base-100": "#bae6fd",
         },

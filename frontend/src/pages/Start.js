@@ -30,7 +30,7 @@ function Start() {
     <div class="w-screen h-screen bg-color flex justify-center">
       <div class="w-1/2 content-center">
         <div class="h-2/3 flex flex-col justify-center">
-          <h1 class="mb-4">Start a new game</h1>
+          <h1 class="mb-4 font-bowlby">Start a new game</h1>
           <form onSubmit={handleSubmit}>
             <div class="flex flex-col items-center mb-4">
               <h2 class="mb-4 w-full">Select Difficulty</h2>

@@ -2,19 +2,21 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities"; 
 
-@import url("https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 h1 {
-    @apply text-4xl font-extrabold text-primary;
+    @apply text-4xl font-extrabold text-primary font-inter;
 }
 
 h2 {
-    @apply text-3xl font-bold text-primary;
+    @apply text-3xl font-bold text-primary font-inter;
 }
 
-@layer {
-    @font-face {
-        font-family: Ultraprint;
-        src: url('./fonts/ultraprint.otf') format('opentype');
-    }
+p {
+    @apply font-inter
+}
+
+button {
+    @apply font-inter
 }

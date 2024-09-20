@@ -17,6 +17,7 @@ function Game() {
   const [isLoading, setIsLoading] = useState(true);
   const [countriesData, setCountriesData] = useState([]);
   const [hintImg, setHintImg] = useState("");
+  const [questionLabel, setQuestionLabel] = useState("");
 
   const navigate = useNavigate();
 
@@ -78,7 +79,7 @@ function Game() {
     };
 
     fetchData();
-  }, []);
+  }, [questionIndex]);
 
   function generatePath(countryName) {
     const iso = countriesData
@@ -107,8 +108,14 @@ function Game() {
     }
   }, [curQuestion, countriesData]);
 
+  useEffect(() => {
+    setQuestionLabel(
+      `Question ${questionIndex + 1} of ${gameQuestions.length}`
+    );
+  }, [questionIndex, gameQuestions.length]);
+
   function handleResultsClose() {
-    navigate("/build");
+    navigate("/end");
   }
 
   return (
@@ -126,7 +133,11 @@ function Game() {
 
       {displayQuestion && !isLoading && (
         <div class="w-3/4 h-full flex flex-col items-center justify-center">
-          <Question questionData={curQuestion} onAnswer={handleAnswer} />
+          <Question
+            questionData={curQuestion}
+            onAnswer={handleAnswer}
+            questionLabel={questionLabel}
+          />
 
           <button
             className="btn btn-primary"

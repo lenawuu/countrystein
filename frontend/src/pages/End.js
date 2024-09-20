@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import FinalScreen from "../components/FinalScreen";
-import BuildStein from "./BuildStein";
+import BuildStein from "../components/BuildStein";
 import Naming from "./Naming";
 
 function End() {
   const [finalImage, setFinalImage] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
   const [name, setName] = useState("");
 
   const [showBuild, setShowBuild] = useState(true);
