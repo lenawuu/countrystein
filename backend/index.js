@@ -86,7 +86,7 @@ app.post("/validate", async (req, res) => {
     winnings.push({ country: correctAnswer, path });
   }
 
-  res.send({ correct: answer === correctAnswer, score });
+  res.send({ isCorrect: answer === correctAnswer, score });
 });
 
 app.get("/questions", (req, res) => {
