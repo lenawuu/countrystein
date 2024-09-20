@@ -8,8 +8,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const BATCH_AMT = 50;
-const QUESTION_AMT = 10;
+const NUM_BATCH = 100;
+
+let numQuestions;
 let gameQuestions = [];
 let winnings = [];
 let score = 0;
@@ -24,10 +25,10 @@ function generatePath(countryName) {
   return path;
 }
 
-//TODO: Add num questions
 app.post("/start", async (req, res) => {
   const difficulty = req.body.difficulty;
-  const numQuestions = req.body.numQuestions;
+  numQuestions = req.body.numQuestions;
+  const uniqueQuestionsSet = new Set();
 
   gameQuestions = [];
   score = 0;
@@ -36,7 +37,7 @@ app.post("/start", async (req, res) => {
 
   try {
     const response = await axios.get(
-      `https://opentdb.com/api.php?amount=${BATCH_AMT}&category=22&difficulty=${difficulty}&type=multiple`
+      `https://opentdb.com/api.php?amount=${NUM_BATCH}&category=22&difficulty=${difficulty}&type=multiple`
     );
     const questions = response.data.results;
 
@@ -47,21 +48,33 @@ app.post("/start", async (req, res) => {
         return q;
       });
 
-    //FIXME: Select 10 random questions from batch
-    gameQuestions.push(...filteredQuestions.slice(0, QUESTION_AMT));
+    const shuffledFilteredQuestions = filteredQuestions.sort(
+      () => Math.random() - 0.5
+    );
 
-    // If there are less than 10 questions after requesting API
-    while (gameQuestions.length < QUESTION_AMT) {
-      if (gameQuestions.length < QUESTION_AMT) {
+    for (let question of shuffledFilteredQuestions) {
+      if (
+        gameQuestions.length < numQuestions &&
+        !uniqueQuestionsSet.has(question.id)
+      ) {
+        gameQuestions.push(question);
+        uniqueQuestionsSet.add(question.id);
+      }
+    }
+
+    if (gameQuestions.length < numQuestions) {
+      const extraQuestionsSet = new Set(gameQuestions.map((q) => q.id)); // To ensure uniqueness
+
+      while (gameQuestions.length < numQuestions) {
         const randIndex = Math.floor(Math.random() * extraQuestions.length);
-        const selected = extraQuestions[randIndex];
+        const selected = {
+          ...extraQuestions[randIndex],
+          id: randIndex + extraQuestions.length,
+        };
 
-        if (
-          !gameQuestions.some((q) => q.id === randIndex + BATCH_AMT) &&
-          selected
-        ) {
-          selected.id = randIndex + BATCH_AMT;
+        if (selected && !extraQuestionsSet.has(selected.id)) {
           gameQuestions.push(selected);
+          extraQuestionsSet.add(selected.id);
         }
       }
     }

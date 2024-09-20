@@ -18,7 +18,7 @@ function Start() {
     try {
       await axios.post("http://localhost:8080/start", {
         difficulty,
-        gameLength: Number(gameLength),
+        numQuestions: Number(gameLength),
       });
       navigate("/game");
     } catch (error) {
@@ -47,9 +47,9 @@ function Start() {
                 <input
                   type="radio"
                   name="difficulty"
-                  aria-label="Normal"
-                  checked={difficulty === "normal"}
-                  value="normal"
+                  aria-label="Medium"
+                  checked={difficulty === "medium"}
+                  value="medium"
                   onChange={handleDifficultyChange}
                   class="btn"
                 />
