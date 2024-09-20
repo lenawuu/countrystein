@@ -2,12 +2,27 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        ultraprint: ["Ultraprint", "sans-serif"],
+        bowlby: ["bowlby", "sans-serif"],
+      },
+    },
   },
-  plugins: [require('daisyui')],
+  plugins: [require("daisyui")],
   daisyui: {
-    themes: ["autumn"]
-  },
-  darkMode: ['coffee']
-}
+    themes: [
+      {
+        mytheme: {
+          primary: "#3f6212",
 
+          secondary: "#78716c",
+
+          accent: "#facc15",
+
+          "base-100": "#bae6fd",
+        },
+      },
+    ],
+  },
+};

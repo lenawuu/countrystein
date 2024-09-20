@@ -1,63 +1,45 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FinalScreen from "../components/FinalScreen";
+import BuildStein from "./BuildStein";
+import Naming from "./Naming";
 
 function End() {
-  const [imageSrc, setImageSrc] = useState("");
+  const [finalImage, setFinalImage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [name, setName] = useState("");
+
+  const [showBuild, setShowBuild] = useState(true);
+  const [showNaming, setShowNaming] = useState(false);
   const [showFinal, setShowFinal] = useState(false);
 
-  useEffect(() => {
-    const fetchImage = async () => {
-      try {
-        setIsLoading(true);
-        const response = await axios.get("http://localhost:8080/final-image");
-        if (response.data.image != "") setImageSrc(response.data.image);
-        setIsLoading(false);
-      } catch (error) {}
-    };
-
-    fetchImage();
-  }, []);
+  const handleTransition = () => {
+    if (showBuild) {
+      setShowBuild(false);
+      setShowNaming(true);
+    } else if (showNaming) {
+      setShowNaming(false);
+      setShowFinal(true);
+    }
+  };
 
   return (
-    <div class="w-screen h-screen bg-color flex justify-center">
-      <div class="w-1/2 content-center">
-        {!showFinal && (
-          <div>
-            <h2 class="mb-6">
-              What a beautiful nation! What shall we name it?
-            </h2>
-            <div class="border-2 border-primary rounded-md mb-6">
-              {isLoading ? <span></span> : <img src={imageSrc} />}
-            </div>
-
-            <div class="border-b-2 border-primary w-full mb-6">
-              <input
-                type="text"
-                placeholder="Type here"
-                class="focus:outline-none focus:ring-0 focus:border-focus:border-primary border-2 border-transparent bg-transparent text-primary text-lg w-full font-semibold"
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-              />
-            </div>
-
-            <button
-              class="btn btn-primary w-2/3"
-              onClick={() => {
-                setShowFinal(true);
-              }}
-            >
-              Next
-            </button>
-          </div>
-        )}
-
-        {showFinal && <FinalScreen nationName={name} nationImg={imageSrc} />}
-      </div>
+    <div>
+      {showBuild && (
+        <BuildStein
+          setFinalImage={setFinalImage}
+          handleTransition={handleTransition}
+        />
+      )}
+      {showNaming && (
+        <Naming
+          finalImage={finalImage}
+          handleTransition={handleTransition}
+          setName={setName}
+          name={name}
+        />
+      )}
+      {showFinal && <FinalScreen name={name} finalImage={finalImage} />}
     </div>
   );
 }

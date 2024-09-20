@@ -3,7 +3,7 @@ import axios from "axios";
 import react, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function FinalScreen({ nationName, nationImg }) {
+function FinalScreen({ name, finalImage }) {
   const [isLoading, setIsLoading] = useState(true);
   const [countries, setCountries] = useState([]);
   const [showAdditionalInfo, setShowAdditionalInfo] = useState(false);
@@ -36,11 +36,11 @@ function FinalScreen({ nationName, nationImg }) {
       >
         <p className="text-primary text-4xl font-bold mb-4 text-center">
           Congratulations!
-          <br /> You are the fine ruler of {nationName}!
+          <br /> You are the fine ruler of {name}!
         </p>
         <div class="h-1/3">
           <img
-            src={nationImg}
+            src={finalImage}
             class="w-auto h-full border-2 border-primary rounded-lg"
           />
         </div>
@@ -54,7 +54,7 @@ function FinalScreen({ nationName, nationImg }) {
               className="flex flex-col items-center justify-center w-full"
             >
               <h2 className="text-primary text-2xl mb-4 text-center">
-                {nationName} is made up of...
+                {name} is made up of...
               </h2>
               <div class="grid grid-rows-4 grid-flow-col gap-4 w-1/3 mb-4 justify-items-center">
                 {countries.map((c) => (

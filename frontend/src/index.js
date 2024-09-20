@@ -22,10 +22,6 @@ const router = createBrowserRouter([
     element: <Game />,
   },
   {
-    path: "/build",
-    element: <BuildStein />,
-  },
-  {
     path: "/end",
     element: <End />,
   },

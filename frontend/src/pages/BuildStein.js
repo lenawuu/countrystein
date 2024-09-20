@@ -4,7 +4,7 @@ import axios from "axios";
 import { useScreenshot } from "use-screenshot-hook";
 import { useNavigate } from "react-router-dom";
 
-function BuildStein() {
+function BuildStein({ setFinalImage, handleTransition }) {
   const [countries, setCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -31,12 +31,8 @@ function BuildStein() {
   const handleNext = async () => {
     const screenshot = await takeScreenshot();
 
-    try {
-      await axios.post("http://localhost:8080/final-image", { screenshot });
-      navigate("/end");
-    } catch (error) {
-      console.error("Error storing image:", error);
-    }
+    setFinalImage(screenshot);
+    handleTransition();
   };
 
   return (

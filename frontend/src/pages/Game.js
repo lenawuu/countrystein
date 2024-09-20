@@ -16,6 +16,7 @@ function Game() {
   const [isCorrect, setIsCorrect] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [countriesData, setCountriesData] = useState([]);
+  const [hintImg, setHintImg] = useState("");
 
   const navigate = useNavigate();
 
@@ -57,12 +58,17 @@ function Game() {
   };
 
   useEffect(() => {
-    const fetchQuestions = async () => {
+    const fetchData = async () => {
       try {
         setIsLoading(true);
-        const res = await axios.get("http://localhost:8080/questions");
-        setGameQuestions(res.data);
-        setCurQuestion(res.data[questionIndex]);
+        const [questionsRes, countriesRes] = await Promise.all([
+          axios.get("http://localhost:8080/questions"),
+          fetch("./countries.json").then((response) => response.json()),
+        ]);
+
+        setGameQuestions(questionsRes.data);
+        setCurQuestion(questionsRes.data[questionIndex]);
+        setCountriesData(countriesRes);
         setDisplayQuestion(true);
       } catch (error) {
         console.error("Error fetching questions:", error);
@@ -71,12 +77,7 @@ function Game() {
       }
     };
 
-    fetchQuestions();
-
-    fetch("./countries.json")
-      .then((response) => response.json())
-      .then((json) => setCountriesData(json))
-      .catch((error) => console.error("Error fetching JSON:", error));
+    fetchData();
   }, []);
 
   function generatePath(countryName) {
@@ -87,6 +88,24 @@ function Game() {
     const path = `/mapsicon/all/${iso}/vector.svg`;
     return path;
   }
+
+  useEffect(() => {
+    if (
+      curQuestion &&
+      Object.keys(curQuestion).length > 0 &&
+      countriesData &&
+      countriesData.length > 0
+    ) {
+      const iso = countriesData.find(
+        (c) =>
+          c.country.toLowerCase() === curQuestion.correct_answer.toLowerCase()
+      )?.iso;
+
+      if (iso) {
+        setHintImg(`https://flagsapi.com/${iso}/flat/64.png`);
+      }
+    }
+  }, [curQuestion, countriesData]);
 
   function handleResultsClose() {
     navigate("/build");
@@ -106,8 +125,26 @@ function Game() {
       </div>
 
       {displayQuestion && !isLoading && (
-        <div class="w-3/4 h-full flex items-center justify-center">
+        <div class="w-3/4 h-full flex flex-col items-center justify-center">
           <Question questionData={curQuestion} onAnswer={handleAnswer} />
+
+          <button
+            className="btn btn-primary"
+            onClick={() => document.getElementById("hint_modal").showModal()}
+          >
+            Hint
+          </button>
+          <dialog id="hint_modal" className="modal">
+            <div className="modal-box flex flex-col items-center mx-auto">
+              <h3 className="font-bold text-lg text-center">
+                This country's flag
+              </h3>
+              <img src={hintImg} class="size-36" />
+            </div>
+            <form method="dialog" className="modal-backdrop">
+              <button>close</button>
+            </form>
+          </dialog>
         </div>
       )}
 
