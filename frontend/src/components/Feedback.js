@@ -26,7 +26,7 @@ function Feedback({ isCorrect, onClose, correctAnswer, correctSVG }) {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
+                transition={{ delay: 0.2, duration: 0.3 }}
                 className="text-center justify-center"
               >
                 <p className="text-white text-2xl mb-4">
@@ -35,10 +35,17 @@ function Feedback({ isCorrect, onClose, correctAnswer, correctSVG }) {
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ delay: 0.7, duration: 0.5 }}
+                  transition={{ delay: 0.4, duration: 0.3 }}
                   class="flex justify-center items-center w-full"
                 >
-                  <img src={correctSVG} className="w-3/12 h-auto" />
+                  <img
+                    src={correctSVG}
+                    className="w-3/12 h-auto mt-6"
+                    style={{
+                      filter:
+                        "invert(100%) sepia(81%) saturate(404%) hue-rotate(196deg) brightness(117%) contrast(100%)",
+                    }}
+                  />
                 </motion.div>
               </motion.div>
             )}
@@ -47,9 +54,9 @@ function Feedback({ isCorrect, onClose, correctAnswer, correctSVG }) {
 
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-white text-xl"
+          className="absolute inset-x-0 bottom-0 btn justify-self-center w-48 mb-10"
         >
-          Close
+          Next
         </button>
       </motion.div>
     </AnimatePresence>

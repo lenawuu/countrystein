@@ -43,24 +43,26 @@ function Game() {
   const nextQuestion = () => {
     if (questionIndex < 9) {
       setDisplayFeedback(false);
-      setDisplayQuestion(true);
-      setQuestionIndex(questionIndex + 1);
-      setCurQuestion(gameQuestions[questionIndex]);
+      setQuestionIndex((prevIndex) => {
+        const nextIndex = prevIndex + 1;
+        setCurQuestion(gameQuestions[nextIndex]); // Set curQuestion to the next question
+        return nextIndex;
+      });
       setIsCorrect(false);
+      setDisplayQuestion(true);
     } else {
       setDisplayFeedback(false);
       setShowResults(true);
     }
   };
 
-  // FIXME: first question appears twice
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
         setIsLoading(true);
         const res = await axios.get("http://localhost:8080/questions");
         setGameQuestions(res.data);
-        setCurQuestion(res.data[0]);
+        setCurQuestion(res.data[questionIndex]);
         setDisplayQuestion(true);
       } catch (error) {
         console.error("Error fetching questions:", error);
@@ -95,8 +97,10 @@ function Game() {
       <div class="w-full flex justify-center">
         {displayQuestion && (
           <div class="self-start justify-self-center h-fit flex flex-col justify-center">
-            <p class="text-center">Score</p>
-            <p class="text-center">{score}</p>
+            <p class="text-center font-bold text-primary">
+              Countries collected:
+            </p>
+            <p class="text-center font-bold text-primary">{score}</p>
           </div>
         )}
       </div>

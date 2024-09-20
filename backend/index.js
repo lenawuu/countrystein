@@ -30,6 +30,9 @@ app.post("/start", async (req, res) => {
   const numQuestions = req.body.numQuestions;
 
   gameQuestions = [];
+  score = 0;
+  winnings = [];
+  finalImage = "";
 
   try {
     const response = await axios.get(
@@ -98,7 +101,7 @@ app.get("/winnings", (req, res) => {
 });
 
 app.post("/final-image", (req, res) => {
-  finalImage = req.body.image;
+  finalImage = req.body.screenshot;
 
   res.send(`success. image uri: ${finalImage}`);
 });
