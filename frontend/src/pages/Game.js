@@ -43,7 +43,7 @@ function Game() {
   };
 
   const nextQuestion = () => {
-    if (questionIndex < 9) {
+    if (questionIndex < gameQuestions.length - 1) {
       setDisplayFeedback(false);
       setQuestionIndex((prevIndex) => {
         const nextIndex = prevIndex + 1;

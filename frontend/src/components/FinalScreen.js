@@ -50,7 +50,7 @@ function FinalScreen({ name, finalImage }) {
           <div class="h-1/3">
             <img
               src={finalImage}
-              class="w-auto h-full border-2 border-primary rounded-lg"
+              class="w-auto h-full border-4 border-primary rounded-lg"
             />
           </div>
 

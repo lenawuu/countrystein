@@ -3,8 +3,10 @@ function Naming({ finalImage, setName, name, handleTransition }) {
     <div class="w-screen h-screen bg-color flex justify-center">
       <div class="w-1/2 content-center">
         <div>
-          <h2 class="mb-6">What a beautiful nation! What shall we name it?</h2>
-          <div class="border-2 border-primary rounded-md mb-6">
+          <h2 class="mb-6 font-bowlby">
+            What a beautiful nation! What shall we name it?
+          </h2>
+          <div class="border-4 border-primary rounded-md mb-6">
             <img src={finalImage} />
           </div>
 
